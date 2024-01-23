@@ -1,6 +1,6 @@
 import SuspenseComponent from 'components/suspense';
 import React, { FC, Suspense } from 'react';
-import { Navigate, Routes, Route } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 
 const PrivateRoute: FC<{ element: any }> = ({ element: Element }) => {
@@ -24,7 +24,7 @@ const PublicRoute: FC<{ element: any }> = ({ element: Element }) => (
 
 
 const FlightsPage = React.lazy(() => import('app/flights'));
-const SignPage = React.lazy(() => import('./Airways_Common/components/auth'));
+const SignPage = React.lazy(() => import('../Airways_Common/components/auth'));
 const AdminsPage = React.lazy(() => import('app/admin'));
 
 
