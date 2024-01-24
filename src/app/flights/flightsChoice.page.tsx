@@ -5,6 +5,8 @@ import { fetchAvailableTicketsSortedByPrice, fetchAvailableTicketsSortedByTime, 
 import { SetStateAction, useState } from 'react';
 import TicketCard from 'Airways_Common/components/ticketCard';
 
+
+
 const FlightChoicePage = () => {
     const dispatch = useDispatch();
     const availableTickets = useSelector(selectAvailableTickets);
