@@ -4,11 +4,12 @@ import { Button, TextField, InputAdornment, IconButton, Typography, Grid } from 
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetPassword } from 'app/auth/store/auth.actions';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import { resetSchema } from "./validators/authSchemas";
 import { authResetPasswordErrorSelector } from './store/auth.selectors';
 import { useNavigate } from 'react-router-dom';
+import { resetPassword } from './store/auth.actions';
 
 
 

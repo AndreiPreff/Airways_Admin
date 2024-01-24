@@ -11,9 +11,9 @@ const Suspended: FC<PropsWithChildren & { element: any }> = ({
   );
 };
 
-const SignInPage = React.lazy(() => import("app/auth/signIn.page"));
-const SignUpPage = React.lazy(() => import("app/auth/signUp.page"));
-const ResetPasswordPage = React.lazy(() => import("app/auth/resetPassword.page"));
+const SignInPage = React.lazy(() => import("./signIn.page"));
+const SignUpPage = React.lazy(() => import("./signUp.page"));
+const ResetPasswordPage = React.lazy(() => import("./resetPassword.page"));
 
 
 const AuthenticationRoutes: React.FC = () => {
