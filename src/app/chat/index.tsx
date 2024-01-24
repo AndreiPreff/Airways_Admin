@@ -5,7 +5,7 @@ import ChatRoutes from "./chat.routes";
 
 const ChatPage: FC = () => {
   return (
-    <><Header pages={['chatList', 'chatList/chat']} isAdmin={false} />
+    <><Header  isAdmin={true} />
       <ChatRoutes />
     </>
   );
