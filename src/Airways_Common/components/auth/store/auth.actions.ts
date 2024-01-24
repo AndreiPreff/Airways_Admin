@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import repository from "Airways_Common/components/repository";
 import { FieldValues } from "react-hook-form";
-import repository from "repository";
 import { ErrorResponse } from "types/error.type";
 
 export const signIn = createAsyncThunk(

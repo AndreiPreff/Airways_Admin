@@ -1,12 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  getUserProfile,
-  resetPassword,
-  signIn,
-  signOut,
-  signUp,
-} from "app/auth/store/auth.actions";
-import { AuthState } from "app/auth/types/auth-state";
+import { AuthState } from "../types/auth-state";
+import { getUserProfile, resetPassword, signIn, signOut, signUp } from "./auth.actions";
+
 
 const initialState: AuthState = {
   isAuthorized: false,

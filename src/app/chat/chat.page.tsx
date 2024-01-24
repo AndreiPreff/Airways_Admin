@@ -8,8 +8,14 @@ import {
 } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import io from "socket.io-client";
+import { fetchHistory } from "./store/chat.actions";
+import {
+  selectChatMessages,
+  userProfileSelector,
+} from "./store/chat.selectors";
 
 interface Message {
   senderId: string;
@@ -17,11 +23,13 @@ interface Message {
 }
 
 const Chat: React.FC = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const messages1 = useSelector(selectChatMessages);
+  const user = useSelector(userProfileSelector);
+  const [messages, setMessages] = useState<Message[]>(messages1 || []);
   const [newMessage, setNewMessage] = useState("");
-  const room = useParams();
-  const roomId = room.roomId;
-  const userId = "b9fbf008-5892-4593-97d8-6463a27ffbf7";
+  const room = useParams<{ roomId: string }>();
+  const roomId = room.roomId as string;
+  const userId = user.id;
   const socket = io("http://localhost:5001", {
     transports: ["websocket"],
     query: {
@@ -30,10 +38,13 @@ const Chat: React.FC = () => {
     },
   });
 
-  const listRef = useRef<HTMLUListElement>(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchHistory();
+    dispatch<any>(fetchHistory(roomId));
+  }, [roomId, dispatch, user]);
+
+  useEffect(() => {
     socket.on(
       "message",
       ({ senderId, content }: { senderId: string; content: string }) => {
@@ -50,15 +61,7 @@ const Chat: React.FC = () => {
     scrollToBottom();
   }, [messages]);
 
-  const fetchHistory = async () => {
-    try {
-      const response = await fetch(`http://localhost:5001/chat/${roomId}`);
-      const history = await response.json();
-      setMessages(history.reverse());
-    } catch (error) {
-      console.error("Failed to fetch message history:", error);
-    }
-  };
+  const listRef = useRef<HTMLUListElement>(null);
 
   const handleSendMessage = () => {
     socket.emit("message", {
