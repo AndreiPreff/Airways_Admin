@@ -1,28 +1,14 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Grid, Typography, Button, InputLabel, Select, MenuItem } from '@mui/material';
-import { selectTicket } from './store/flights.slice';
-import { selectAvailableTickets, selectSelectedBackTicket, selectSelectedThereTicket } from './store/flights.selectors';
+import { selectAvailableTickets } from './store/flights.selectors';
 import { fetchAvailableTicketsSortedByPrice, fetchAvailableTicketsSortedByTime, } from './store/flights.actions';
 import { SetStateAction, useState } from 'react';
-import TicketCard from './components/ticketCard';
-import SelectedTicketCard from './components/selectedTicketCard';
-import { useNavigate } from 'react-router-dom';
+import TicketCard from 'Airways_Common/components/ticketCard';
+
 const FlightChoicePage = () => {
     const dispatch = useDispatch();
     const availableTickets = useSelector(selectAvailableTickets);
-    const selectedThereTicket = useSelector(selectSelectedThereTicket);
-    const selectedBackTicket = useSelector(selectSelectedBackTicket);
-    const navigation = useNavigate();
     const [sortType, setSortType] = useState('price');
-
-    const handleOrderTicket = () => {
-        navigation('/flights/passenger-info');
-    };
-
-    const onDeselectTicket = (ticketType: string) => {
-        dispatch(selectTicket({ ticketType, ticket: null }));
-    };;
-
     const handleSortChange = (event: { target: { value: SetStateAction<string>; }; }) => {
         setSortType(event.target.value);
     };
@@ -65,6 +51,7 @@ const FlightChoicePage = () => {
                             <TicketCard
                                 tickets={[ticket]}
                                 ticketType="there"
+                                admin={true}
                             />
                         </Grid>
                     ))}
@@ -80,6 +67,7 @@ const FlightChoicePage = () => {
                             <TicketCard
                                 tickets={[ticket]}
                                 ticketType="back"
+                                admin={true}
                             />
                         </Grid>
                     ))}
@@ -89,38 +77,7 @@ const FlightChoicePage = () => {
                     <Typography>No available tickets</Typography>
                 </Grid>
             )}
-            {(selectedThereTicket || selectedBackTicket) && (
-                <Grid item xs={12}>
-                    <Typography variant="h2" gutterBottom>
-                        Order
-                    </Typography>
-                </Grid>
-            )}
-            {selectedThereTicket && (
-                <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <SelectedTicketCard
-                        tickets={selectedThereTicket}
-                        ticketType="there"
-                        onDeselect={() => onDeselectTicket("there")}
-                    />
-                </Grid>
-            )}
-            {selectedBackTicket && (
-                <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <SelectedTicketCard
-                        tickets={selectedBackTicket}
-                        ticketType="back"
-                        onDeselect={() => onDeselectTicket("back")}
-                    />
-                </Grid>
-            )}
-            {(selectedThereTicket || selectedBackTicket) && (
-                <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <Button onClick={handleOrderTicket} variant="contained" color="secondary">
-                        Order
-                    </Button>
-                </Grid>
-            )}
+
         </Grid>
     );
 };

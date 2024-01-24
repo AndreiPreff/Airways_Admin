@@ -3,7 +3,6 @@ import {
   fetchAvailableTickets,
   fetchAvailableTicketsSortedByPrice,
   fetchAvailableTicketsSortedByTime,
-  orderTickets,
 } from "./flights.actions";
 import { FlightsState } from "../types/flights-state";
 
@@ -85,20 +84,6 @@ export const flightsSlice = createSlice({
           state.error = action.payload.error;
         }
       )
-      .addCase(orderTickets.pending, (state) => {
-        state.pending = true;
-        state.error = null;
-      })
-      .addCase(orderTickets.fulfilled, (state, { payload }) => {
-        state.pending = false;
-      })
-      .addCase(
-        orderTickets.rejected,
-        (state, action: any & { payload: any }) => {
-          state.pending = false;
-          state.error = action.payload.error;
-        }
-      );
   },
 });
 
