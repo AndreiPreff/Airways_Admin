@@ -27,6 +27,7 @@ const FlightsPage = React.lazy(() => import('app/flights'));
 const SignPage = React.lazy(() => import('./Airways_Common/components/auth'));
 const AdminsPage = React.lazy(() => import('app/admin'));
 const ChatPage = React.lazy(() => import('app/chat'));
+const ManagersPage = React.lazy(() => import('app/manager'));
 
 
 const AppRoutes = () => {
@@ -46,6 +47,7 @@ const AppRoutes = () => {
         element={<PublicRoute element={AdminsPage} />}
       />
       <Route path={'/chats/*'} element={<PublicRoute element={ChatPage} />} />
+      <Route path={'/manager/*'} element={<PublicRoute element={ManagersPage} />} />
 
      
        
