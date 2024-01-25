@@ -33,7 +33,7 @@ const ManagersPage = React.lazy(() => import('app/manager'));
 const AppRoutes = () => {
   return (
     <Routes>
-      {/* PRIVATE */}
+      
 
 
       {/* PUBLIC */}
@@ -46,6 +46,7 @@ const AppRoutes = () => {
         path={'/admin/*'}
         element={<PublicRoute element={AdminsPage} />}
       />
+      {/* PRIVATE */}
       <Route path={'/chats/*'} element={<PrivateRoute element={ChatPage} />} />
       <Route path={'/manager/*'} element={<PrivateRoute element={ManagersPage} />} />
 
