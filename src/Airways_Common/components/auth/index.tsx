@@ -5,7 +5,7 @@ import Header from "../header";
 
 const SignPage: React.FC = () => {
   return (
-    <><Header isAdmin={false} />
+    <><Header isAdmin={true} />
       <AuthenticationRoutes />
     </>
   );
