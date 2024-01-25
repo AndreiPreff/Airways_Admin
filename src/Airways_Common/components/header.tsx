@@ -24,7 +24,7 @@ export default function Header({ isAdmin }: { isAdmin: boolean }) {
     null
   );
   const userInfo = useSelector(userProfileSelector);
-  const startLink = isAdmin ? "admin" : " flights";
+  const startLink = isAdmin ? "/admin" : "/flights";
   const pagesLink = isAdmin
     ? ["admin/users", "chats/chatList", "flights", "manager"]
     : ["Orders", "Orders/History"];

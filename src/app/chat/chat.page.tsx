@@ -29,7 +29,7 @@ const Chat: React.FC = () => {
   const [newMessage, setNewMessage] = useState("");
   const room = useParams<{ roomId: string }>();
   const roomId = room.roomId as string;
-  const userId = user.id;
+  const userId = user?.id;
   const socket = io("http://localhost:5001", {
     transports: ["websocket"],
     query: {
