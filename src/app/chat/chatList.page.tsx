@@ -66,7 +66,6 @@ const ChatList: React.FC = () => {
         status: chatData[roomId],
       }));
 
-      // Сортировка чатов так, чтобы активный чат был в начале
       chatsArray.sort((a, b) =>
         a.status === "active" ? -1 : b.status === "active" ? 1 : 0
       );
