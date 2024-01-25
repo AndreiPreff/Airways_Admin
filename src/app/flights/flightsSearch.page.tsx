@@ -180,7 +180,7 @@ const FlightsPage = () => {
               />
               {errors.passengerCount && (
                 <Typography color="error" sx={{ fontSize: 16, fontWeight: 'bold' }}>
-                  {errors.passengerCount.message}
+                  Invalid data!
                 </Typography>
               )}
             </FormControl>
