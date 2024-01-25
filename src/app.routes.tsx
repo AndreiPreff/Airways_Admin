@@ -4,7 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 
 const PrivateRoute: FC<{ element: any }> = ({ element: Element }) => {
-  return sessionStorage.getItem('access_token') ? (
+  return localStorage.getItem('access_token') ? (
     <Suspense fallback={<SuspenseComponent />}>
       <div>
         <Element />
@@ -37,7 +37,7 @@ const AppRoutes = () => {
 
 
       {/* PUBLIC */}
-      <Route path={'/flights/*'} element={<PublicRoute element={FlightsPage} />} />
+      <Route path={'/flights/*'} element={<PrivateRoute element={FlightsPage} />} />
       <Route
         path={'/auth/*'}
         element={<PublicRoute element={SignPage} />}
@@ -46,8 +46,8 @@ const AppRoutes = () => {
         path={'/admin/*'}
         element={<PublicRoute element={AdminsPage} />}
       />
-      <Route path={'/chats/*'} element={<PublicRoute element={ChatPage} />} />
-      <Route path={'/manager/*'} element={<PublicRoute element={ManagersPage} />} />
+      <Route path={'/chats/*'} element={<PrivateRoute element={ChatPage} />} />
+      <Route path={'/manager/*'} element={<PrivateRoute element={ManagersPage} />} />
 
      
        
