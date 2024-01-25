@@ -26,8 +26,9 @@ export default function Header({ isAdmin }: { isAdmin: boolean }) {
   const userInfo = useSelector(userProfileSelector);
   const startLink = isAdmin ? "admin" : " flights";
   const pagesLink = isAdmin
-    ? ["admin/users", "manager/chat", "flights"]
+    ? ["admin/users", "manager/chat", "flights","manager"]
     : ["Orders", "Orders/History"];
+
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
