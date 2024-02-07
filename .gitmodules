@@ -1,3 +1,5 @@
 [submodule "Airways_Common"]
 	path = Airways_Common
 	url = https://github.com/AndreiPreff/Airways_Common.git
+	branch = develop
+
